@@ -1,1 +1,36 @@
 # prime-solo-mongo
+
+// 0. Create a collection named orders
+
+db.createCollection('orders')
+
+//1. Insert at least 3 documents that represent an order. IMPORTANT: See section below for fields. Order dates should be: 2017-02-03, 2017-04-04, 2017-01-02
+
+db.orders.insert({orderDate: new Date('2017-02-03'), 
+                 orderTotal: 30.0, 
+                 lineItems: [{unitPrice: 10.0, quantity: 3, 
+                 productName: "Desk Chair"}]});
+
+db.orders.insert({orderDate: new Date('2017-03-20'), 
+                  orderTotal: 20.0, 
+                  lineItems: [{unitPrice: 5.0, 
+                  quantity: 5, 
+                  productName: "Coffee Table"}]});
+
+db.orders.insert({orderDate: new Date('2017-04-20'), 
+                  orderTotal: 30.0, 
+                  lineItems: [{unitPrice: 25.0, quantity: 6, 
+                  productName: "Office Desk"}]});
+
+//2. Find all orders and make them look pretty.
+db.orders.find().pretty();
+
+//3. Find all orders with an orderDate that is after 1/31/2017.
+
+db.orders.find({orderDate: {$gt: new Date('2017-01-31')}});
+
+//4. Change the orderTotal from 2/3/2017 to 63 dollars (you do NOT have to ensure the lineItems' unitPrice * quantity add up to the orderTotal)
+
+
+books.update({title:"Catcher in the Rye"}, {$set: author: "J. D. Salinger"});
+db.orders.update({orderDate:"new Date('2017-03-20')"}, {$set: {orderTotal:"63.0"}});
